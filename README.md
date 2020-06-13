@@ -28,11 +28,13 @@ have been initialized.
 > C is not that young [62]<br>
 > E is not that young [90]
 
-```python
-Solution considerations: 
+
+`Solution considerations: `
 1. Sort out the List "persons" by person's age. 
 2. Use "for loop" to iterate each person in persons and within for loop, then use "if else statement" to sort out the person by age group. 
 
+
+```java
 persons.sort(Comparator.comparingInt(Person::getAge));
 
 String ageGroup;
@@ -44,6 +46,7 @@ for (Person person: persons){
         ageGroup = " is not that young ";
     }
     System.out.println(person.getName()+ageGroup+"["+person.getAge()+"]");
+}
 ```
 
 #####2. Complete the implementation of the method getCityStats that should return a Map of the city names with their occurrences:
@@ -55,14 +58,15 @@ for (Person person: persons){
 >    "Sherbrooke" -> 1<br>
 > )
 
-```python
-Solution consideration: 
+`Solution consideration: `
 1. Create a HashMap to store the result. 
 2. Use "for loop" to iterate each person in List "persons". 
 3. Use "if else statement" to check each person's city, if the city in the Map, then add 1 to the variable count. 
 If the name isn't in the Map key, then set the value as 1. 
 4. Return this HashMap as the final result. 
 
+
+```java
 Map<String, Integer> cityMap = new HashMap<String,Integer>();
 for (Person person: persons) {
     Integer count;
@@ -95,12 +99,12 @@ that will contain all the records of the four input files.
 You can output this file to the path of your choice on your local machine.
 Result file does not have to be committed to the repository at the end of the exercise.
      
-```python    
-
 My solution is refered below links: 
 https://sparkbyexamples.com/spark/using-avro-data-files-from-spark-sql-2-3-x/
 https://spark.apache.org/docs/latest/sql-data-sources-avro.html
 https://stackoverflow.com/questions/53164427/how-can-i-generate-a-single-avro-file-for-large-flat-file-with-30mb-data
+
+```java    
 
     // create a spark session instance 
     SparkSession spark = SparkSession.builder().master("local").getOrCreate();
@@ -127,10 +131,9 @@ Transformation/Datamart : Using the result of the first step,
 please output the data again (again at the path of your choice),
 but this time partitioned by age, excluding people that are younger than 21. Output should look like :
 
+`Solution: Filter the dataset, exclude age < 21 and write partitions into pp folder. `
 
-```python  
-Solution: Filter the dataset, exclude age < 21 and write partitions into pp folder. 
-
+```java  
 ds.filter("age>=21").write().partitionBy("age")
         .format("com.databricks.spark.avro")
         .mode(SaveMode.Overwrite)
@@ -143,6 +146,8 @@ ds.filter("age>=21").write().partitionBy("age")
     can you explain why it is critical to run this kind of compaction in HDFS?
     
     I think there are two main advantages:
-    1. HDFS is a distributed file system, so it will speed up data processing and also the replication mechanism will increase data availability and consistancy. 
-    2. It will greatly support data further consumers, like business analysis, machine learning, OLAP services, etc.  
+    1. HDFS is a distributed file system, it will store the file into partitions. So many small files on HDFS means 
+    there will be more I/O times than a merged file. So compacting files in fewer bigger ones can shorten the data processing time. 
+  
+    2. It will also better support data consumers, like business analysis, machine learning, OLAP services, etc.  
 
