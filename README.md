@@ -18,7 +18,7 @@ exercise.
 The goal of this first exercise is to review quickly the basics of Java. In the file Part1.java, a list of Person objects
 have been initialized.
 
-#####1. Complete the implementation of the method printStatus that should print the output:
+##### 1. Complete the implementation of the method printStatus that should print the output:
 
 > D is young [8]<br>
 > A is young [15]<br>
@@ -49,7 +49,7 @@ for (Person person: persons){
 }
 ```
 
-#####2. Complete the implementation of the method getCityStats that should return a Map of the city names with their occurrences:
+##### 2. Complete the implementation of the method getCityStats that should return a Map of the city names with their occurrences:
 
 > Map(<br>
 >    "Quebec" -> 1<br>
@@ -90,9 +90,9 @@ src/main/resources/input. The Avro schema is provided in the src/main/resources/
 Please initiate in the file Part2.java a Spark 2 Session in local mode (no interaction with an Hadoop cluster will happen during this
 exercise).
 
-#####1. **Compaction** : Using the Spark API, please generate one Avro file that will contain all the records of the four
- #####input files. You can output this file to the path of your choice on your local machine. Result file does not have to be committed to the
- #####repository at the end of the exercise.
+##### 1. **Compaction** : Using the Spark API, please generate one Avro file that will contain all the records of the four
+ ##### input files. You can output this file to the path of your choice on your local machine. Result file does not have to be committed to the
+ ##### repository at the end of the exercise.
           
 Compaction : Using the Spark API, please generate one Avro file
 that will contain all the records of the four input files.
@@ -121,8 +121,8 @@ https://stackoverflow.com/questions/53164427/how-can-i-generate-a-single-avro-fi
 ```
 
 
-#####2. **Transformation/Datamart** : Using the result of the first step, please output the data again (again at the path
- #####of your choice), but this time partitioned by age, *excluding* people that are younger than 21. Output should look like :
+##### 2. **Transformation/Datamart** : Using the result of the first step, please output the data again (again at the path
+ ##### of your choice), but this time partitioned by age, *excluding* people that are younger than 21. Output should look like :
 #####    - \path\age=21\\***.avro
 #####    - \path\age=24\\***.avro
 #####   - ...
